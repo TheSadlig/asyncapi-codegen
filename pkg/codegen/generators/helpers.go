@@ -2,6 +2,7 @@ package generators
 
 import (
 	"fmt"
+	"github.com/lerenn/asyncapi-codegen/pkg/utils"
 	"strings"
 
 	"github.com/lerenn/asyncapi-codegen/pkg/asyncapi"
@@ -57,4 +58,9 @@ func GenerateValidateTags[T any](schema asyncapi.Validations[T]) string {
 	} else {
 		return ""
 	}
+}
+
+// DateTimeFormatInSpec recursively iterates to find any Schema, and returns true if their format is "date-time".
+func DateTimeFormatInSpec[SPEC any](spec SPEC) bool {
+	return utils.FieldValueExists(spec, "Format", "date-time")
 }

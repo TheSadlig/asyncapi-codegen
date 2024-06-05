@@ -2,7 +2,6 @@ package generatorv3
 
 import (
 	"fmt"
-
 	asyncapi "github.com/lerenn/asyncapi-codegen/pkg/asyncapi/v3"
 	"github.com/lerenn/asyncapi-codegen/pkg/codegen/generators"
 	"github.com/lerenn/asyncapi-codegen/pkg/codegen/options"
@@ -55,11 +54,18 @@ func (g Generator) generateImports(opts options.Options) (string, error) {
 		return "", fmt.Errorf("failed to generate custom imports: %w", err)
 	}
 
+	var requiredImports []string
+
+	if generators.DateTimeFormatInSpec(g.Specification) {
+		requiredImports = append(requiredImports, "\"cloud.google.com/go/civil\"")
+	}
+
 	return ImportsGenerator{
-		PackageName:   opts.PackageName,
-		ModuleVersion: g.ModuleVersion,
-		ModuleName:    g.ModulePath,
-		CustomImports: imps,
+		PackageName:     opts.PackageName,
+		ModuleVersion:   g.ModuleVersion,
+		ModuleName:      g.ModulePath,
+		RequiredImports: requiredImports,
+		CustomImports:   imps,
 	}.Generate()
 }
 
