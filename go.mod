@@ -1,4 +1,4 @@
-module github.com/lerenn/asyncapi-codegen
+module github.com/TheSadlig/asyncapi-codegen
 
 go 1.21
 
@@ -12,6 +12,7 @@ require (
 	github.com/google/go-cmp v0.6.0
 	github.com/google/uuid v1.6.0
 	github.com/iancoleman/strcase v0.3.0
+	github.com/lerenn/asyncapi-codegen v0.43.0
 	github.com/mohae/deepcopy v0.0.0-20170929034955-c48cc78d4826
 	github.com/nats-io/nats.go v1.31.0
 	github.com/segmentio/kafka-go v0.4.42
